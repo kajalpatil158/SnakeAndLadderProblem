@@ -13,19 +13,24 @@ namespace SnakeAndLader
         {
             Console.WriteLine("Hello Welcome To Snake And Lader Problem ");
             string player1 = Console.ReadLine();
-            int playerPosition = Start;
-            Console.WriteLine("Current Position : " + playerPosition);
-            int diceRoll = DiceRoll();
-            Console.WriteLine("Dice Roll : " + diceRoll);
-            playerPosition = Condition(diceRoll, playerPosition);
-            Console.WriteLine("Your Position: " + playerPosition);
-            if (playerPosition >= 100)
+            int CurrentPosition = Start;
+            for (int noOfTimesRoll = 1; CurrentPosition < 100; noOfTimesRoll++)
             {
-                Console.WriteLine("Game Over");
-                
-            }
-            Console.ReadLine();
 
+                Console.WriteLine("Current Position : " + CurrentPosition);
+                int diceRoll = DiceRoll();
+                Console.WriteLine("Dice Roll : " + diceRoll);
+                CurrentPosition  = Condition(diceRoll, CurrentPosition);
+                Console.WriteLine("Your Current position: " + CurrentPosition);
+                Console.WriteLine("Your Position: " + CurrentPosition);
+                Console.WriteLine("you rolled you dice total time from stating::" + noOfTimesRoll);
+                if (CurrentPosition == 100)
+                {
+                    Console.WriteLine("Game Over");
+
+                }
+                Console.ReadLine();
+            }
         }
         static int DiceRoll()
         {
@@ -43,7 +48,7 @@ namespace SnakeAndLader
                     Console.WriteLine("No Play");
                     break;
                 case Snake:
-                    Console.WriteLine("You Are Bitten by Snake");
+                    Console.WriteLine("Its Snake");
                     if (playerPosition - numberRolled >= 0)
                     {
                         playerPosition = playerPosition - numberRolled;
