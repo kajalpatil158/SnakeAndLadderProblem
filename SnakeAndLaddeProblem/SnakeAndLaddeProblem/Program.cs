@@ -6,6 +6,9 @@ namespace SnakeAndLader
     {
         public const int Start = 0;
         public const int End = 100;
+        public const int No_Play = 0;
+        public const int Snake = 1;
+        public const int Ladder = 2;
         static void Main(string[] args)
         {
             Console.WriteLine("Hello Welcome To Snake And Lader Problem ");
@@ -14,6 +17,9 @@ namespace SnakeAndLader
             Console.WriteLine("Current Position : " + playerPosition);
             int diceRoll = DiceRoll();
             Console.WriteLine("Dice Roll : " + diceRoll);
+            playerPosition = Condition(diceRoll, playerPosition);
+            Console.WriteLine("Your Position: " + playerPosition);
+
         }
         static int DiceRoll()
         {
@@ -21,6 +27,26 @@ namespace SnakeAndLader
             int dice = random.Next(1, 7);
             return dice;
         }
-    
+        static int Condition(int numberRolled, int playerPosition)
+        {
+            Random random = new Random();
+            int move = random.Next(0, 3);
+            switch (move)
+            {
+                case No_Play:
+                    Console.WriteLine("No Play");
+                    break;
+                case Snake:
+                    Console.WriteLine("Snake");
+                    playerPosition = playerPosition - numberRolled;
+                    break;
+                case Ladder:
+                    Console.WriteLine("Ladder");
+                    playerPosition = playerPosition + numberRolled;
+                    break;
+            }
+            return playerPosition;
+        }
+
     }
 }
