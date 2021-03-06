@@ -19,6 +19,12 @@ namespace SnakeAndLader
             Console.WriteLine("Dice Roll : " + diceRoll);
             playerPosition = Condition(diceRoll, playerPosition);
             Console.WriteLine("Your Position: " + playerPosition);
+            if (playerPosition >= 100)
+            {
+                Console.WriteLine("Game Over");
+                
+            }
+            Console.ReadLine();
 
         }
         static int DiceRoll()
@@ -37,13 +43,21 @@ namespace SnakeAndLader
                     Console.WriteLine("No Play");
                     break;
                 case Snake:
-                    Console.WriteLine("Snake");
-                    playerPosition = playerPosition - numberRolled;
-                    break;
+                    Console.WriteLine("You Are Bitten by Snake");
+                    if (playerPosition - numberRolled >= 0)
+                    {
+                        playerPosition = playerPosition - numberRolled;
+                        break;
+                    }
+                    else
+                    {
+                        playerPosition = Start;
+                        break;
+                    }
                 case Ladder:
-                    Console.WriteLine("Ladder");
+                    Console.WriteLine("You Got Ladder");
                     playerPosition = playerPosition + numberRolled;
-                    break;
+                    break; ;
             }
             return playerPosition;
         }
